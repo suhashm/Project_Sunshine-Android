@@ -2,6 +2,7 @@ package io.thikjs.com.sunshine;
 
 //import android.app.Fragment;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -76,7 +78,7 @@ public class ForecastFragment extends Fragment {
                 "Wed 6/25 - Cloudy - 22/17",
                 "Thurs 6/26 - Rainy - 18/11",
                 "Fri 6/27 - Foggy - 21/10",
-                "Sat 6/28 - TRAPPED IN WEATHERSTATION BLR - 23/18",
+                "Sat 6/28 - TRAPPED IN WEATHERSTATION ORD - 23/18",
                 "Sun 6/29 - Sunny - 20/7"
         };
         List<String> weekForecast = new ArrayList<String>(Arrays.asList(data));
@@ -96,7 +98,19 @@ public class ForecastFragment extends Fragment {
         // Get a reference to the ListView, and attach this adapter to it.
         ListView listView = (ListView) rootView.findViewById(R.id.listview_forecast);
         listView.setAdapter(mForecastAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
+                String forecast = mForecastAdapter.getItem(position);
+                //Toast.makeText(getActivity(),forecast,Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(getActivity(),DetailActivity.class)
+                                .putExtra(Intent.EXTRA_TEXT,forecast);
+                startActivity(intent);
+
+            }
+        });
         return rootView;
     }
 
