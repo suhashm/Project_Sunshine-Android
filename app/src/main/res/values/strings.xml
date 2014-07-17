@@ -27,4 +27,6 @@
     <!-- Label for imperial option in temperature unit preference [CHAR LIMIT=25] -->
     <string name="pref_units_label_imperial">Imperial</string>
 
+    <string name="action_map">Map my Location</string>
+
 </resources>
